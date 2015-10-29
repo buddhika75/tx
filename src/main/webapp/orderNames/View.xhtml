@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="OrderNamesViewDlg" widgetVar="OrderNamesViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewOrderNamesTitle}">
+            <h:form id="OrderNamesViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{orderNamesController.selected != null}">
+                        <h:outputText value="#{bundle.ViewOrderNamesLabel_id}"/>
+                        <h:outputText value="#{orderNamesController.selected.id}" title="#{bundle.ViewOrderNamesTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewOrderNamesLabel_ordername}"/>
+                        <h:outputText value="#{orderNamesController.selected.ordername}" title="#{bundle.ViewOrderNamesTitle_ordername}"/>
+                        <h:outputText value="#{bundle.ViewOrderNamesLabel_ordereffectivedate}"/>
+                        <h:outputText value="#{orderNamesController.selected.ordereffectivedate}" title="#{bundle.ViewOrderNamesTitle_ordereffectivedate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewOrderNamesLabel_ordertypeid}"/>
+                        <h:outputText value="#{orderNamesController.selected.ordertypeid}" title="#{bundle.ViewOrderNamesTitle_ordertypeid}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="OrderNamesViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

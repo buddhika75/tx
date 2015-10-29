@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DoctorsCreateDlg" widgetVar="DoctorsCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDoctorsTitle}">
+            <h:form id="DoctorsCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{doctorsController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateDoctorsLabel_nic}" for="nic" />
+                        <p:inputText id="nic" value="#{doctorsController.selected.nic}" title="#{bundle.CreateDoctorsTitle_nic}" required="true" requiredMessage="#{bundle.CreateDoctorsRequiredMessage_nic}"/>
+                        <p:outputLabel value="#{bundle.CreateDoctorsLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{doctorsController.selected.name}" title="#{bundle.CreateDoctorsTitle_name}" required="true" requiredMessage="#{bundle.CreateDoctorsRequiredMessage_name}"/>
+                        <p:outputLabel value="#{bundle.CreateDoctorsLabel_datereported}" for="datereported" />
+                        <p:calendar id="datereported" pattern="MM/dd/yyyy" value="#{doctorsController.selected.datereported}" title="#{bundle.EditDoctorsTitle_datereported}" required="true" requiredMessage="#{bundle.EditDoctorsRequiredMessage_datereported}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateDoctorsLabel_reportedordername}" for="reportedordername" />
+                        <p:inputText id="reportedordername" value="#{doctorsController.selected.reportedordername}" title="#{bundle.CreateDoctorsTitle_reportedordername}" required="true" requiredMessage="#{bundle.CreateDoctorsRequiredMessage_reportedordername}"/>
+                        <p:outputLabel value="#{bundle.CreateDoctorsLabel_remarks}" for="remarks" />
+                        <p:inputText id="remarks" value="#{doctorsController.selected.remarks}" title="#{bundle.CreateDoctorsTitle_remarks}" required="true" requiredMessage="#{bundle.CreateDoctorsRequiredMessage_remarks}"/>
+                        <p:outputLabel value="#{bundle.CreateDoctorsLabel_unitid}" for="unitid" />
+                        <p:selectOneMenu id="unitid" value="#{doctorsController.selected.unitid}" required="true" requiredMessage="#{bundle.EditDoctorsRequiredMessage_unitid}">
+                            <f:selectItems value="#{unitsController.itemsAvailableSelectOne}"
+                                           var="unitidItem"
+                                           itemValue="#{unitidItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{doctorsController.create}" value="#{bundle.Save}" update="display,:DoctorsListForm:datalist,:growl" oncomplete="handleSubmit(args,'DoctorsCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DoctorsCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TransfersCreateDlg" widgetVar="TransfersCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTransfersTitle}">
+            <h:form id="TransfersCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{transfersController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTransfersLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{transfersController.selected.id}" title="#{bundle.CreateTransfersTitle_id}" required="true" requiredMessage="#{bundle.CreateTransfersRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateTransfersLabel_senioritygrade}" for="senioritygrade" />
+                        <p:inputText id="senioritygrade" value="#{transfersController.selected.senioritygrade}" title="#{bundle.CreateTransfersTitle_senioritygrade}" required="true" requiredMessage="#{bundle.CreateTransfersRequiredMessage_senioritygrade}"/>
+                        <p:outputLabel value="#{bundle.CreateTransfersLabel_senioritydate}" for="senioritydate" />
+                        <p:calendar id="senioritydate" pattern="MM/dd/yyyy" value="#{transfersController.selected.senioritydate}" title="#{bundle.EditTransfersTitle_senioritydate}" required="true" requiredMessage="#{bundle.EditTransfersRequiredMessage_senioritydate}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateTransfersLabel_seniorityPF}" for="seniorityPF" />
+                        <p:inputText id="seniorityPF" value="#{transfersController.selected.seniorityPF}" title="#{bundle.CreateTransfersTitle_seniorityPF}" required="true" requiredMessage="#{bundle.CreateTransfersRequiredMessage_seniorityPF}"/>
+                        <p:outputLabel value="#{bundle.CreateTransfersLabel_remarks}" for="remarks" />
+                        <p:inputText id="remarks" value="#{transfersController.selected.remarks}" title="#{bundle.CreateTransfersTitle_remarks}" required="true" requiredMessage="#{bundle.CreateTransfersRequiredMessage_remarks}"/>
+                        <p:outputLabel value="#{bundle.CreateTransfersLabel_nic}" for="nic" />
+                        <p:selectOneMenu id="nic" value="#{transfersController.selected.nic}" required="true" requiredMessage="#{bundle.EditTransfersRequiredMessage_nic}">
+                            <f:selectItems value="#{doctorsController.itemsAvailableSelectOne}"
+                                           var="nicItem"
+                                           itemValue="#{nicItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTransfersLabel_tounitid}" for="tounitid" />
+                        <p:selectOneMenu id="tounitid" value="#{transfersController.selected.tounitid}" required="true" requiredMessage="#{bundle.EditTransfersRequiredMessage_tounitid}">
+                            <f:selectItems value="#{unitsController.itemsAvailableSelectOne}"
+                                           var="tounitidItem"
+                                           itemValue="#{tounitidItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTransfersLabel_fromunitid}" for="fromunitid" />
+                        <p:selectOneMenu id="fromunitid" value="#{transfersController.selected.fromunitid}" required="true" requiredMessage="#{bundle.EditTransfersRequiredMessage_fromunitid}">
+                            <f:selectItems value="#{unitsController.itemsAvailableSelectOne}"
+                                           var="fromunitidItem"
+                                           itemValue="#{fromunitidItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTransfersLabel_transferordernameid}" for="transferordernameid" />
+                        <p:selectOneMenu id="transferordernameid" value="#{transfersController.selected.transferordernameid}" required="true" requiredMessage="#{bundle.EditTransfersRequiredMessage_transferordernameid}">
+                            <f:selectItems value="#{orderNamesController.itemsAvailableSelectOne}"
+                                           var="transferordernameidItem"
+                                           itemValue="#{transferordernameidItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{transfersController.create}" value="#{bundle.Save}" update="display,:TransfersListForm:datalist,:growl" oncomplete="handleSubmit(args,'TransfersCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TransfersCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

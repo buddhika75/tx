@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InstitutionsViewDlg" widgetVar="InstitutionsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewInstitutionsTitle}">
+            <h:form id="InstitutionsViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{institutionsController.selected != null}">
+                        <h:outputText value="#{bundle.ViewInstitutionsLabel_id}"/>
+                        <h:outputText value="#{institutionsController.selected.id}" title="#{bundle.ViewInstitutionsTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewInstitutionsLabel_instname}"/>
+                        <h:outputText value="#{institutionsController.selected.instname}" title="#{bundle.ViewInstitutionsTitle_instname}"/>
+                        <h:outputText value="#{bundle.ViewInstitutionsLabel_carder}"/>
+                        <h:outputText value="#{institutionsController.selected.carder}" title="#{bundle.ViewInstitutionsTitle_carder}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="InstitutionsViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

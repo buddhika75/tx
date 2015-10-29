@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TransfersViewDlg" widgetVar="TransfersViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTransfersTitle}">
+            <h:form id="TransfersViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{transfersController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTransfersLabel_id}"/>
+                        <h:outputText value="#{transfersController.selected.id}" title="#{bundle.ViewTransfersTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewTransfersLabel_senioritygrade}"/>
+                        <h:outputText value="#{transfersController.selected.senioritygrade}" title="#{bundle.ViewTransfersTitle_senioritygrade}"/>
+                        <h:outputText value="#{bundle.ViewTransfersLabel_senioritydate}"/>
+                        <h:outputText value="#{transfersController.selected.senioritydate}" title="#{bundle.ViewTransfersTitle_senioritydate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTransfersLabel_seniorityPF}"/>
+                        <h:outputText value="#{transfersController.selected.seniorityPF}" title="#{bundle.ViewTransfersTitle_seniorityPF}"/>
+                        <h:outputText value="#{bundle.ViewTransfersLabel_remarks}"/>
+                        <h:outputText value="#{transfersController.selected.remarks}" title="#{bundle.ViewTransfersTitle_remarks}"/>
+                        <h:outputText value="#{bundle.ViewTransfersLabel_nic}"/>
+                        <h:outputText value="#{transfersController.selected.nic}" title="#{bundle.ViewTransfersTitle_nic}"/>
+                        <h:outputText value="#{bundle.ViewTransfersLabel_tounitid}"/>
+                        <h:outputText value="#{transfersController.selected.tounitid}" title="#{bundle.ViewTransfersTitle_tounitid}"/>
+                        <h:outputText value="#{bundle.ViewTransfersLabel_fromunitid}"/>
+                        <h:outputText value="#{transfersController.selected.fromunitid}" title="#{bundle.ViewTransfersTitle_fromunitid}"/>
+                        <h:outputText value="#{bundle.ViewTransfersLabel_transferordernameid}"/>
+                        <h:outputText value="#{transfersController.selected.transferordernameid}" title="#{bundle.ViewTransfersTitle_transferordernameid}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TransfersViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

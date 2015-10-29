@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InstitutionsEditDlg" widgetVar="InstitutionsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditInstitutionsTitle}">
+            <h:form id="InstitutionsEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{institutionsController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditInstitutionsLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{institutionsController.selected.id}" title="#{bundle.EditInstitutionsTitle_id}" required="true" requiredMessage="#{bundle.EditInstitutionsRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditInstitutionsLabel_instname}" for="instname" />
+                        <p:inputText id="instname" value="#{institutionsController.selected.instname}" title="#{bundle.EditInstitutionsTitle_instname}" required="true" requiredMessage="#{bundle.EditInstitutionsRequiredMessage_instname}"/>
+                        <p:outputLabel value="#{bundle.EditInstitutionsLabel_carder}" for="carder" />
+                        <p:inputText id="carder" value="#{institutionsController.selected.carder}" title="#{bundle.EditInstitutionsTitle_carder}" required="true" requiredMessage="#{bundle.EditInstitutionsRequiredMessage_carder}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{institutionsController.update}" value="#{bundle.Save}" update="display,:InstitutionsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'InstitutionsEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="InstitutionsEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

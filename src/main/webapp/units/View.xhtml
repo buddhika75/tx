@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UnitsViewDlg" widgetVar="UnitsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewUnitsTitle}">
+            <h:form id="UnitsViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{unitsController.selected != null}">
+                        <h:outputText value="#{bundle.ViewUnitsLabel_id}"/>
+                        <h:outputText value="#{unitsController.selected.id}" title="#{bundle.ViewUnitsTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewUnitsLabel_unitName}"/>
+                        <h:outputText value="#{unitsController.selected.unitName}" title="#{bundle.ViewUnitsTitle_unitName}"/>
+                        <h:outputText value="#{bundle.ViewUnitsLabel_carder}"/>
+                        <h:outputText value="#{unitsController.selected.carder}" title="#{bundle.ViewUnitsTitle_carder}"/>
+                        <h:outputText value="#{bundle.ViewUnitsLabel_institutionID}"/>
+                        <h:outputText value="#{unitsController.selected.institutionID}" title="#{bundle.ViewUnitsTitle_institutionID}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="UnitsViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
